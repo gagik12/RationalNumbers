@@ -173,18 +173,32 @@ bool const operator ==(CRational const& rational1, CRational const& rational2)
 
 bool const operator !=(CRational const& rational1, CRational const& rational2)
 {
-    return (rational1.GetNumerator() != rational2.GetNumerator()) &&
+    return (rational1.GetNumerator() != rational2.GetNumerator()) ||
         (rational1.GetDenominator() != rational2.GetDenominator());
 }
 
 
+bool const operator <(CRational const& rational1, CRational const& rational2)
+{
+    return rational1.GetNumerator() * rational2.GetDenominator() <
+        rational1.GetDenominator() * rational2.GetNumerator();
+}
 
-//////////////////////////////////////////////////////////////////////////
-// TODO: 12. Реализовать операторы <, >, <=, >=
-//////////////////////////////////////////////////////////////////////////
+bool const operator >(CRational const& rational1, CRational const& rational2)
+{
+    return rational1.GetNumerator() * rational2.GetDenominator() >
+        rational1.GetDenominator() * rational2.GetNumerator();
+}
 
+bool const operator <=(CRational const& rational1, CRational const& rational2)
+{
+    return !(rational1 > rational2);
+}
 
-
+bool const operator >=(CRational const& rational1, CRational const& rational2)
+{
+    return !(rational1 < rational2);
+}
 
 //////////////////////////////////////////////////////////////////////////
 // TODO: 13. Реализовать оператор вывода рационального числа в выходной поток 

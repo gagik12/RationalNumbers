@@ -67,17 +67,13 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
     BOOST_AUTO_TEST_SUITE(unary_operator)
         BOOST_AUTO_TEST_CASE(unary_plus_returns_the_rational_number_equal_to_the_current)
         {
-            CRational rational(3, 5);
-            CRational rational2 = +rational;
-            VerifyRational(rational2, 3, 5);
+            VerifyRational(+CRational(3, 5), 3, 5);
         }
 
         BOOST_AUTO_TEST_CASE(unary_minus_returns_the_rational_number_with_the_opposite_sign)
         {
-            CRational rational(3, 5);
-            CRational rational2 = -rational;
-            VerifyRational(rational2, -3, 5);
-            VerifyRational(-rational2, 3, 5);
+            VerifyRational(-CRational(3, 5), -3, 5);
+            VerifyRational(-CRational(-3, 5), 3, 5);
         }
     BOOST_AUTO_TEST_SUITE_END()
 
@@ -86,24 +82,17 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
     BOOST_AUTO_TEST_SUITE(binary_operator_plus)
         BOOST_AUTO_TEST_CASE(returns_the_result_of_adding_two_rational_numbers)
         {
-            CRational rational1(1, 2);
-            CRational rational2(1, 6);
-            auto result = rational1 + rational2;
-            VerifyRational(result, 2, 3);
+            VerifyRational(CRational(1, 2) + CRational(1, 6), 2, 3);
         }
 
         BOOST_AUTO_TEST_CASE(returns_the_result_of_adding_a_rational_number_with_an_integer)
         {
-            CRational rational(1, 2);
-            auto result = rational + 9;
-            VerifyRational(result, 19, 2);
+            VerifyRational(CRational(1, 2) + 9, 19, 2);
         }
 
         BOOST_AUTO_TEST_CASE(returns_the_result_of_adding_integer_with_a_rational_number)
         {
-            CRational rational(1, 2);
-            auto result = 9 + rational;
-            VerifyRational(result, 19, 2);
+            VerifyRational(10 + CRational(1, 2), 21, 2);
         }
     BOOST_AUTO_TEST_SUITE_END()
 
@@ -111,24 +100,17 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
     BOOST_AUTO_TEST_SUITE(binary_operator_minus)
         BOOST_AUTO_TEST_CASE(returns_the_result_of_difference_two_rational_numbers)
         {
-            CRational rational1(1, 2);
-            CRational rational2(1, 6);
-            auto result = rational1 - rational2;
-            VerifyRational(result, 1, 3);
+            VerifyRational(CRational(1, 2) - CRational(1, 6), 1, 3);
         }
 
         BOOST_AUTO_TEST_CASE(returns_the_result_of_difference_a_rational_number_with_an_integer)
         {
-            CRational rational(1, 2);
-            auto result = rational - 9;
-            VerifyRational(result, -17, 2);
+            VerifyRational(CRational(1, 2) - 9, -17, 2);
         }
 
         BOOST_AUTO_TEST_CASE(returns_the_result_of_difference_integer_with_a_rational_number)
         {
-            CRational rational(1, 2);
-            auto result = 9 - rational;
-            VerifyRational(result, 17, 2);
+            VerifyRational(9 - CRational(1, 2), 17, 2);
         }
     BOOST_AUTO_TEST_SUITE_END()
 
@@ -137,17 +119,12 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
     BOOST_AUTO_TEST_SUITE(plus_equal_operator)
         BOOST_AUTO_TEST_CASE(can_add_a_rational_number)
         {
-            CRational rational1(1, 6);
-            CRational rational2(1, 6);
-            rational1 += rational2;
-            VerifyRational(rational1, 1, 3);
+            VerifyRational(CRational(1, 6) += CRational(1, 6), 1, 3);
         }
 
         BOOST_AUTO_TEST_CASE(can_add_by_the_number)
         {
-            CRational rational(1, 2);
-            rational += 1;
-            VerifyRational(rational, 3, 2);
+            VerifyRational(CRational(1, 2) += 1, 3, 2);
         }
     BOOST_AUTO_TEST_SUITE_END()
 
@@ -156,17 +133,12 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
     BOOST_AUTO_TEST_SUITE(minus_equal_operator)
         BOOST_AUTO_TEST_CASE(can_subtract_a_rational_number)
         {
-            CRational rational1(1, 3);
-            CRational rational2(1, 6);
-            rational1 -= rational2;
-            VerifyRational(rational1, 1, 6);
+            VerifyRational(CRational(1, 3) -= CRational(1, 6), 1, 6);
         }
 
         BOOST_AUTO_TEST_CASE(can_subtract_by_the_number)
         {
-            CRational rational(1, 2);
-            rational -= 1;
-            VerifyRational(rational, -1, 2);
+            VerifyRational(CRational(1, 2) -= 1, -1, 2);
         }
     BOOST_AUTO_TEST_SUITE_END()
 
@@ -175,18 +147,15 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
     BOOST_AUTO_TEST_SUITE(multiplication_operator)
         BOOST_AUTO_TEST_CASE(can_multiply_a_rational_number)
         {
-            CRational rational1(1, 2);
-            CRational rational2(1, 3);
-            VerifyRational(rational1 + rational2, 5, 6);
-            VerifyRational(rational2 + rational1, 5, 6);
+            VerifyRational(CRational(1, 2) + CRational(1, 3), 5, 6);
+            VerifyRational(CRational(3, 4) + CRational(1, 3), 13, 12);
         }
 
         BOOST_AUTO_TEST_CASE(can_multiply_by_the_number)
         {
-            CRational rational(1, 2);
-            VerifyRational(rational * 10, 5, 1);
-            VerifyRational(-3 * rational, -3, 2);
-            VerifyRational(3 * rational, 3, 2);
+            VerifyRational(CRational(1, 2) * 10, 5, 1);
+            VerifyRational(-3 * CRational(1, 2), -3, 2);
+            VerifyRational(3 * CRational(1, 2), 3, 2);
         }
     BOOST_AUTO_TEST_SUITE_END()
 
@@ -195,11 +164,9 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
     BOOST_AUTO_TEST_SUITE(division_operator)
         BOOST_AUTO_TEST_CASE(can_divide)
         {
-            CRational rational1(1, 2);
-            CRational rational2(2, 3);
-            VerifyRational(rational1 / rational2, 3, 4);
-            VerifyRational(rational1 / 5, 1, 10);
-            VerifyRational(7 / rational2, 21, 2);
+            VerifyRational(CRational(1, 2) / CRational(2, 3), 3, 4);
+            VerifyRational(CRational(1, 2) / 5, 1, 10);
+            VerifyRational(7 / CRational(2, 3), 21, 2);
         }
     BOOST_AUTO_TEST_SUITE_END()
 
@@ -208,10 +175,8 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
     BOOST_AUTO_TEST_SUITE(multiplication_equal_operator)
         BOOST_AUTO_TEST_CASE(can_multiply_the_value_of_the_first_rational_number_by_another_number)
         {
-            CRational rational1(1, 2);
-            CRational rational2(2, 3);
-            VerifyRational(rational1 *= rational2, 1, 3);
-            VerifyRational(rational1 *= 3, 1, 1);
+            VerifyRational(CRational(1, 2) *= CRational(2, 3), 1, 3);
+            VerifyRational(CRational(1, 2) *= 3, 3, 2);
         }
     BOOST_AUTO_TEST_SUITE_END()
 
@@ -220,49 +185,31 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
     BOOST_AUTO_TEST_SUITE(division_equal_operator)
         BOOST_AUTO_TEST_CASE(can_divide_the_value_of_the_first_rational_number_by_another_number)
         {
-            CRational rational1(1, 2);
-            CRational rational2(2, 3);
-            VerifyRational(rational1 /= rational2, 3, 4);
-            VerifyRational(rational1 /= 3, 1, 4);
+            VerifyRational(CRational(1, 2) /= CRational(2, 3), 3, 4);
+            VerifyRational(CRational(1, 2) /= 2, 1, 4);
         }
     BOOST_AUTO_TEST_SUITE_END()
 
 
 
-//////////////////////////////////////////////////////////////////////////
-// TODO: 11. Реализовать операторы == и !=
-// Проверяют равенство (и неравенство) двух рациональных чисел, 
-//	целого и рационального, рационального и целого:
-//	(1/2) == (1/2) → true
-//	(4/1) == 4     → true
-//	3 == (3/1)     → true
-//	(1/2) != (2/3) → true
-//	(1/2) != 7     → true
-//	3 != (2/3)     → true
-//////////////////////////////////////////////////////////////////////////
 
-    BOOST_AUTO_TEST_SUITE(comparison_operator)
-        BOOST_AUTO_TEST_CASE(can_divide_the_value_of_the_first_rational_number_by_another_number)
+    BOOST_AUTO_TEST_SUITE(comparison_operators)
+        BOOST_AUTO_TEST_CASE(compare_the_numbers)
         {
-            CRational rational1(1, 2);
-            CRational rational2(2, 3);
-            VerifyRational(rational1 /= rational2, 3, 4);
-            VerifyRational(rational1 /= 3, 1, 4);
+            BOOST_CHECK(CRational(1, 2) == CRational(1, 2));
+            BOOST_CHECK(CRational(6, 3) == 2);
+            BOOST_CHECK(4 == CRational(4, 1));
+            BOOST_CHECK(CRational(1, 3) != CRational(1, 2));
+            BOOST_CHECK(4 != CRational(4, 2));
+
+            BOOST_CHECK(CRational(1, 2) > CRational(1, 3));
+            BOOST_CHECK(CRational(6, 3) >= 2);
+            BOOST_CHECK(CRational(1, 4) < CRational(1, 2));
+            BOOST_CHECK(CRational(1, 4) <= CRational(1, 2));
+            BOOST_CHECK(CRational(1, 4) <= CRational(1, 4));
         }
     BOOST_AUTO_TEST_SUITE_END()
 
-
-//////////////////////////////////////////////////////////////////////////
-// TODO: 12. Реализовать операторы <, >, <=, >=
-// Сравнивают два рациональных числа, рациональное с целым, 
-//	целое с рациональным:
-//	(1/2) >= (1/3) → true
-//	(1/2) <= (1/3) → false
-//	(3/1) > 2      → true
-//	(1/2) < 7      → true
-//	3 <= (7/2)     → true
-//	3 >= (8/2)     → false
-//////////////////////////////////////////////////////////////////////////
 
 
 

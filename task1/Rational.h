@@ -37,21 +37,10 @@ public:
     friend bool const operator ==(CRational const& rational1, CRational const& rational2);
     friend bool const operator !=(CRational const& rational1, CRational const& rational2);
 
-
-    //////////////////////////////////////////////////////////////////////////
-    // TODO: 12. Реализовать операторы <, >, <=, >=
-    // Сравнивают два рациональных числа, рациональное с целым, 
-    //	целое с рациональным:
-    //	(1/2) >= (1/3) → true
-    //	(1/2) <= (1/3) → false
-    //	(3/1) > 2      → true
-    //	(1/2) < 7      → true
-    //	3 <= (7/2)     → true
-    //	3 >= (8/2)     → false
-    //////////////////////////////////////////////////////////////////////////
-
-
-
+    friend bool const operator <(CRational const& rational1, CRational const& rational2);
+    friend bool const operator >(CRational const& rational1, CRational const& rational2);
+    friend  bool const operator <=(CRational const& rational1, CRational const& rational2);
+    friend  bool const operator >=(CRational const& rational1, CRational const& rational2);
 
     //////////////////////////////////////////////////////////////////////////
     // TODO: 13. Реализовать оператор вывода рационального числа в выходной поток 
