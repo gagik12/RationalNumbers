@@ -42,20 +42,10 @@ public:
     friend  bool const operator <=(CRational const& rational1, CRational const& rational2);
     friend  bool const operator >=(CRational const& rational1, CRational const& rational2);
 
-    //////////////////////////////////////////////////////////////////////////
-    // TODO: 13. Реализовать оператор вывода рационального числа в выходной поток 
-    //	std::ostream в формате <числитель>/<знаменатель>, 
-    //	например: 7/15
-    //////////////////////////////////////////////////////////////////////////
+    friend std::ostream & operator<<(std::ostream &stream, CRational const& rational);
+    friend std::istream & operator>>(std::istream &stream, CRational & rational);
 
 
-
-
-    //////////////////////////////////////////////////////////////////////////
-    // TODO: 14. Реализовать оператор ввода рационального числа из входного потока 
-    //	std::istream в формате <числитель>/<знаменатель>, 
-    //	например: 7/15
-    //////////////////////////////////////////////////////////////////////////
 private:
     int m_numerator;
     int m_denominator;

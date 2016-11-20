@@ -153,18 +153,6 @@ CRational const CRational::operator /=(CRational const& rational)
 }
 
 
-
-
-//////////////////////////////////////////////////////////////////////////
-// TODO: 11. Реализовать операторы == и !=
-//	(1/2) == (1/2) → true
-//	(4/1) == 4     → true
-//	3 == (3/1)     → true
-//	(1/2) != (2/3) → true
-//	(1/2) != 7     → true
-//	3 != (2/3)     → true
-//////////////////////////////////////////////////////////////////////////
-
 bool const operator ==(CRational const& rational1, CRational const& rational2)
 {
     return (rational1.GetNumerator() == rational2.GetNumerator()) &&
@@ -200,16 +188,28 @@ bool const operator >=(CRational const& rational1, CRational const& rational2)
     return !(rational1 < rational2);
 }
 
-//////////////////////////////////////////////////////////////////////////
-// TODO: 13. Реализовать оператор вывода рационального числа в выходной поток 
-//////////////////////////////////////////////////////////////////////////
 
+std::ostream & operator<<(std::ostream &stream, CRational const& rational)
+{
+    stream << rational.GetNumerator() << "/"
+        << rational.GetDenominator();
+    return stream;
+}
 
-
-
-
-//////////////////////////////////////////////////////////////////////////
-// TODO: 14. Реализовать оператор ввода рационального числа из входного потока 
-//////////////////////////////////////////////////////////////////////////
-
-
+std::istream & operator >> (std::istream &stream, CRational & rational)
+{
+    unsigned numerator = 0;
+    unsigned denominator = 1;
+    if (
+        (stream >> numerator) && (stream.get() == '/') &&
+        (stream >> denominator)
+        )
+    {
+        rational = CRational(numerator, denominator);
+    }
+    else
+    {
+        stream.setstate(std::ios_base::failbit | stream.rdstate());
+    }
+    return stream;
+}

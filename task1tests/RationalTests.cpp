@@ -211,24 +211,25 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
     BOOST_AUTO_TEST_SUITE_END()
 
 
+    BOOST_AUTO_TEST_SUITE(output_operator)
+        BOOST_AUTO_TEST_CASE(can_output_rational_number)
+        {
+            boost::test_tools::output_test_stream output;
+            output << CRational(10, 3);
+            BOOST_CHECK(output.is_equal("10/3"));
+        }
+    BOOST_AUTO_TEST_SUITE_END()
 
 
-
-//////////////////////////////////////////////////////////////////////////
-// TODO: 13. Реализовать оператор вывода рационального числа в выходной поток 
-//	std::ostream в формате <числитель>/<знаменатель>, 
-//	например: 7/15
-//////////////////////////////////////////////////////////////////////////
-
-
-
-
-//////////////////////////////////////////////////////////////////////////
-// TODO: 14. Реализовать оператор ввода рационального числа из входного потока 
-//	std::istream в формате <числитель>/<знаменатель>, 
-//	например: 7/15
-//////////////////////////////////////////////////////////////////////////
-
+    BOOST_AUTO_TEST_SUITE(input_operator)
+        BOOST_AUTO_TEST_CASE(can_input_rational_number)
+        {
+            std::istringstream stream("4/3");
+            CRational rational;
+            stream >> rational;
+            VerifyRational(rational, 4, 3);
+        }
+    BOOST_AUTO_TEST_SUITE_END()
 
 
 BOOST_AUTO_TEST_SUITE_END()
