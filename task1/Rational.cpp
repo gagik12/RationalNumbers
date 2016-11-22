@@ -20,6 +20,14 @@ CRational::CRational(int numerator, int denominator)
     Normalize();
 }
 
+std::pair<int, CRational> CRational::ToCompoundFraction() const
+{
+    std::pair<int, CRational> сompoundFraction;
+    сompoundFraction.first = m_numerator / m_denominator;
+    сompoundFraction.second = CRational(m_numerator % m_denominator, m_denominator);
+    return сompoundFraction;
+}
+
 int CRational::GetNumerator() const
 {
     return m_numerator;
