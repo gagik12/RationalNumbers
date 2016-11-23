@@ -3,7 +3,6 @@
 #include <utility>
 #include <stdexcept>
 
-
 CRational::CRational(int numerator, int denominator)
     : m_numerator(numerator)
     , m_denominator(denominator)
@@ -54,14 +53,10 @@ unsigned GCD(unsigned a, unsigned b)
     return (a != 0) ? a : 1;
 }
 
-
-
 double CRational::ToDouble() const
 {
     return static_cast<double>(m_numerator) / m_denominator;
 }
-
-
 
 CRational const CRational::operator +() const
 {
@@ -73,7 +68,6 @@ CRational const CRational::operator -() const
     return CRational(-m_numerator, m_denominator);
 }
 
-
 CRational const operator +(CRational const& rational1, CRational const& rational2)
 {
     int numerator = rational1.GetNumerator() * rational2.GetDenominator() +
@@ -81,8 +75,6 @@ CRational const operator +(CRational const& rational1, CRational const& rational
     int denominator = rational1.GetDenominator() * rational2.GetDenominator();
     return CRational(numerator, denominator);
 }
-
-
 
 CRational const operator -(CRational const& rational1, CRational const& rational2)
 {
@@ -92,32 +84,17 @@ CRational const operator -(CRational const& rational1, CRational const& rational
     return CRational(numerator, denominator);
 }
 
-
 CRational const CRational::operator +=(CRational const& rational)
 {
-    if (rational.GetNumerator() == 0)
-    {
-        return *this;
-    }
     *this = *this + rational;
-    Normalize();
     return *this;
 }
-
 
 CRational const CRational::operator -=(CRational const& rational)
 {
-    if (rational.GetNumerator() == 0)
-    {
-        return *this;
-    }
     *this = *this - rational;
-    Normalize();
     return *this;
 }
-
-
-
 
 CRational const operator *(CRational const& rational1, CRational const& rational2)
 {
@@ -126,8 +103,6 @@ CRational const operator *(CRational const& rational1, CRational const& rational
     return CRational(numerator, denominator);
 }
 
-
-
 CRational const operator /(CRational const& rational1, CRational const& rational2)
 {
     int numerator = rational1.GetNumerator() * rational2.GetDenominator();
@@ -135,30 +110,17 @@ CRational const operator /(CRational const& rational1, CRational const& rational
     return CRational(numerator, denominator);
 }
 
-
-
 CRational const CRational::operator *=(CRational const& rational)
 {
-    if (rational.GetNumerator() == 0)
-    {
-        return *this;
-    }
     *this = *this * rational;
-    Normalize();
     return *this;
 }
 
 CRational const CRational::operator /=(CRational const& rational)
 {
-    if (rational.GetNumerator() == 0)
-    {
-        return *this;
-    }
     *this = *this / rational;
-    Normalize();
     return *this;
 }
-
 
 bool const operator ==(CRational const& rational1, CRational const& rational2)
 {
@@ -171,7 +133,6 @@ bool const operator !=(CRational const& rational1, CRational const& rational2)
     return (rational1.GetNumerator() != rational2.GetNumerator()) ||
         (rational1.GetDenominator() != rational2.GetDenominator());
 }
-
 
 bool const operator <(CRational const& rational1, CRational const& rational2)
 {
