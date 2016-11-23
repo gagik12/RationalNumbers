@@ -216,8 +216,9 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
             BOOST_CHECK(CRational(1, 2) == CRational(1, 2));
             BOOST_CHECK(CRational(6, 3) == 2);
             BOOST_CHECK(4 == CRational(4, 1));
-            BOOST_CHECK(CRational(1, 3) != CRational(1, 2));
+            BOOST_CHECK(CRational(4, 8) != CRational(4, 16));
             BOOST_CHECK(4 != CRational(4, 2));
+            BOOST_CHECK(CRational(5, 2) != CRational(1, 2));
 
             BOOST_CHECK(CRational(1, 2) > CRational(1, 3));
             BOOST_CHECK(CRational(6, 3) >= 2);
