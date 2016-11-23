@@ -22,10 +22,9 @@ CRational::CRational(int numerator, int denominator)
 
 std::pair<int, CRational> CRational::ToCompoundFraction() const
 {
-    std::pair<int, CRational> сompoundFraction;
-    сompoundFraction.first = m_numerator / m_denominator;
-    сompoundFraction.second = CRational(m_numerator % m_denominator, m_denominator);
-    return сompoundFraction;
+    int integer = m_numerator / m_denominator;
+    int numerator = m_numerator - integer * m_denominator;
+    return {integer, CRational(numerator, m_denominator)};
 }
 
 int CRational::GetNumerator() const
@@ -199,8 +198,7 @@ bool const operator >=(CRational const& rational1, CRational const& rational2)
 
 std::ostream & operator<<(std::ostream &stream, CRational const& rational)
 {
-    stream << rational.GetNumerator() << "/"
-        << rational.GetDenominator();
+    stream << rational.GetNumerator() << "/" << rational.GetDenominator();
     return stream;
 }
 
