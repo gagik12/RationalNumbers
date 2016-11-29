@@ -78,10 +78,7 @@ CRational const operator +(CRational const& rational1, CRational const& rational
 
 CRational const operator -(CRational const& rational1, CRational const& rational2)
 {
-    int numerator = rational1.GetNumerator() * rational2.GetDenominator() -
-        rational2.GetNumerator() * rational1.GetDenominator();
-    int denominator = rational1.GetDenominator() * rational2.GetDenominator();
-    return CRational(numerator, denominator);
+    return rational1 + (-rational2);
 }
 
 CRational const CRational::operator +=(CRational const& rational)
@@ -130,8 +127,7 @@ bool const operator ==(CRational const& rational1, CRational const& rational2)
 
 bool const operator !=(CRational const& rational1, CRational const& rational2)
 {
-    return (rational1.GetNumerator() != rational2.GetNumerator()) ||
-        (rational1.GetDenominator() != rational2.GetDenominator());
+    return !(rational1 == rational2);
 }
 
 bool const operator <(CRational const& rational1, CRational const& rational2)
@@ -157,13 +153,13 @@ bool const operator >=(CRational const& rational1, CRational const& rational2)
 }
 
 
-std::ostream & operator<<(std::ostream &stream, CRational const& rational)
+std::ostream & operator <<(std::ostream &stream, CRational const& rational)
 {
     stream << rational.GetNumerator() << "/" << rational.GetDenominator();
     return stream;
 }
 
-std::istream & operator >> (std::istream &stream, CRational & rational)
+std::istream & operator >>(std::istream &stream, CRational & rational)
 {
     unsigned numerator = 0;
     unsigned denominator = 1;
