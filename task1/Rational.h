@@ -18,15 +18,15 @@ public:
 
     std::pair<int, CRational> ToCompoundFraction() const;
 
-    CRational const operator +() const;
-    CRational const operator -() const;
+    CRational operator +() const;
+    CRational operator -() const;
 
-    CRational const operator +=(CRational const& rational);
-    CRational const operator -=(CRational const& rational);
+    CRational & operator +=(CRational const& rational);
+    CRational & operator -=(CRational const& rational);
 
 
-    CRational const operator *=(CRational const& rational);
-    CRational const operator /=(CRational const& rational);
+    CRational & operator *=(CRational const& rational);
+    CRational & operator /=(CRational const& rational);
 
 private:
     int m_numerator;

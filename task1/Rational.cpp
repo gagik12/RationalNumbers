@@ -58,12 +58,12 @@ double CRational::ToDouble() const
     return static_cast<double>(m_numerator) / m_denominator;
 }
 
-CRational const CRational::operator +() const
+CRational CRational::operator +() const
 {
     return *this;
 }
 
-CRational const CRational::operator -() const
+CRational CRational::operator -() const
 {
     return CRational(-m_numerator, m_denominator);
 }
@@ -81,13 +81,13 @@ CRational const operator -(CRational const& rational1, CRational const& rational
     return rational1 + (-rational2);
 }
 
-CRational const CRational::operator +=(CRational const& rational)
+CRational & CRational::operator +=(CRational const& rational)
 {
     *this = *this + rational;
     return *this;
 }
 
-CRational const CRational::operator -=(CRational const& rational)
+CRational & CRational::operator -=(CRational const& rational)
 {
     *this = *this - rational;
     return *this;
@@ -107,13 +107,13 @@ CRational const operator /(CRational const& rational1, CRational const& rational
     return CRational(numerator, denominator);
 }
 
-CRational const CRational::operator *=(CRational const& rational)
+CRational & CRational::operator *=(CRational const& rational)
 {
     *this = *this * rational;
     return *this;
 }
 
-CRational const CRational::operator /=(CRational const& rational)
+CRational & CRational::operator /=(CRational const& rational)
 {
     *this = *this / rational;
     return *this;
