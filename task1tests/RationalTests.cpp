@@ -230,6 +230,7 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
         {
             BOOST_CHECK(CRational(1, 2) > CRational(1, 3));
             BOOST_CHECK(CRational(7, 2) > 2);
+            BOOST_CHECK(!(CRational(1, 2) > CRational(1, 2)));
             BOOST_CHECK(!(CRational(-5, 2) > CRational(1, 3)));
         }
 
@@ -237,6 +238,7 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
         {
             BOOST_CHECK(CRational(1, 4) < CRational(1, 2));
             BOOST_CHECK(CRational(-1, 2) < 4);
+            BOOST_CHECK(!(CRational(1, 4) < CRational(1, 4)));
             BOOST_CHECK(!(CRational(1, 4) < CRational(-1, 6)));
         }
 
@@ -270,12 +272,32 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
     BOOST_AUTO_TEST_SUITE(input_operator)
         BOOST_AUTO_TEST_CASE(can_input_rational_number)
         {
-            std::istringstream stream("4/3");
-            CRational rational;
-            stream >> rational;
-            VerifyRational(rational, 4, 3);
+            {
+                std::istringstream stream("4/3");
+                CRational rational;
+                stream >> rational;
+                VerifyRational(rational, 4, 3);
+                stream.clear();
+            }
+
+            {
+                std::istringstream stream("v4/4");
+                CRational rational;
+                stream >> rational;
+                BOOST_CHECK(stream.fail());
+            }
         }
     BOOST_AUTO_TEST_SUITE_END()
 
+    BOOST_AUTO_TEST_CASE(must_have_a_valid_addition_assignment)
+    {
+        int x = 3, y = 5, z = 6;
+        (x += y) += z;
 
+        CRational rx(3);
+        CRational ry(5);
+        CRational rz(6);
+        (rx += ry) += rz;
+        BOOST_CHECK(rx == x);
+    }
 BOOST_AUTO_TEST_SUITE_END()
