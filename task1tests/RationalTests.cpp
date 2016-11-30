@@ -209,22 +209,50 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 
 
 
-
     BOOST_AUTO_TEST_SUITE(comparison_operators)
-        BOOST_AUTO_TEST_CASE(compare_the_numbers)
+        BOOST_AUTO_TEST_CASE(can_be_compared_on_equality_of)
         {
             BOOST_CHECK(CRational(1, 2) == CRational(1, 2));
             BOOST_CHECK(CRational(6, 3) == 2);
             BOOST_CHECK(4 == CRational(4, 1));
+            BOOST_CHECK(!(4 == CRational(4, 3)));
+        }
+
+        BOOST_AUTO_TEST_CASE(can_be_compared_on_inequality_of)
+        {
             BOOST_CHECK(CRational(4, 8) != CRational(4, 16));
             BOOST_CHECK(4 != CRational(4, 2));
             BOOST_CHECK(CRational(5, 2) != CRational(1, 2));
+            BOOST_CHECK(!(CRational(5, 2) != CRational(5, 2)));
+        }
 
+        BOOST_AUTO_TEST_CASE(can_be_greater_than)
+        {
             BOOST_CHECK(CRational(1, 2) > CRational(1, 3));
-            BOOST_CHECK(CRational(6, 3) >= 2);
+            BOOST_CHECK(CRational(7, 2) > 2);
+            BOOST_CHECK(!(CRational(-5, 2) > CRational(1, 3)));
+        }
+
+        BOOST_AUTO_TEST_CASE(can_be_less_than)
+        {
             BOOST_CHECK(CRational(1, 4) < CRational(1, 2));
+            BOOST_CHECK(CRational(-1, 2) < 4);
+            BOOST_CHECK(!(CRational(1, 4) < CRational(-1, 6)));
+        }
+
+        BOOST_AUTO_TEST_CASE(can_be_greater_or_equal_to)
+        {
+            BOOST_CHECK(CRational(6, 3) >= 2);
+            BOOST_CHECK(CRational(6, 5) >= CRational(6, 7));
+            BOOST_CHECK(!(CRational(6, 5) >= CRational(7, 2)));
+        }
+
+        BOOST_AUTO_TEST_CASE(can_be_less_or_equal_to)
+        {
             BOOST_CHECK(CRational(1, 4) <= CRational(1, 2));
             BOOST_CHECK(CRational(1, 4) <= CRational(1, 4));
+            BOOST_CHECK(CRational(1, 4) <= 2);
+            BOOST_CHECK(!(CRational(1, 4) <= CRational(1, 6)));
         }
     BOOST_AUTO_TEST_SUITE_END()
 
