@@ -277,7 +277,6 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
                 CRational rational;
                 stream >> rational;
                 VerifyRational(rational, 4, 3);
-                stream.clear();
             }
 
             {
