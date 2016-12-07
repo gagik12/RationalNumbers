@@ -247,6 +247,7 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
             BOOST_CHECK(CRational(6, 3) >= 2);
             BOOST_CHECK(CRational(6, 5) >= CRational(6, 7));
             BOOST_CHECK(!(CRational(6, 5) >= CRational(7, 2)));
+            BOOST_CHECK(CRational(2, 3) >= CRational(2, 3));
         }
 
         BOOST_AUTO_TEST_CASE(can_be_less_or_equal_to)
@@ -283,6 +284,15 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
                 std::istringstream stream("v4/4");
                 CRational rational;
                 stream >> rational;
+                VerifyRational(rational, 0, 1);
+                BOOST_CHECK(stream.fail());
+            }
+
+            {
+                std::istringstream stream("4/*4");
+                CRational rational;
+                stream >> rational;
+                VerifyRational(rational, 0, 1);
                 BOOST_CHECK(stream.fail());
             }
         }
